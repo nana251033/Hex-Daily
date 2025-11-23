@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>🐶🐱毛小孩歲數計算機</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="overlay"></div>
+
+  <div class="container">
+    <h1>🐶🐱 毛小孩歲數計算機</h1>
+
+    <div class="form-group">
+      <label>毛小孩出生年月日</label>
+      <input type="date" id="birthday" />
+    </div>
+
+    <div class="form-group">
+      <label>毛小孩的種類與體型</label>
+      <select id="petType">
+        <option value="">請選擇</option>
+        <option value="cat">貓</option>
+        <option value="smallDog">小型犬</option>
+        <option value="mediumDog">中型犬</option>
+        <option value="largeDog">大型犬</option>
+        <option value="giantDog">巨型犬</option>
+      </select>
+    </div>
+
+    <button id="calcBtn">開始計算</button>
+
+    <!-- 初始不顯示 -->
+    <div id="result" class="result"></div>
+
+    <div class="source">
+      參考文獻：早安毛健康 -
+      <a href="https://pets.edh.tw/blog/cat-age-conversion" target="_blank">貓齡換算</a>、
+      <a href="https://pets.edh.tw/blog/dog-age-conversion-guide" target="_blank">狗齡換算</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
