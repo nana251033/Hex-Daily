@@ -13,7 +13,6 @@ if (savedPetType) {
   document.getElementById("petType").value = savedPetType;
 }
 
-
 // -------------------------------------------------------
 // 原有的按鈕計算邏輯 (包含 功能 2：儲存資料)
 // -------------------------------------------------------
@@ -32,7 +31,7 @@ document.getElementById("calcBtn").addEventListener("click", function () {
   localStorage.setItem("user_birthday", birthday);
   localStorage.setItem("user_petType", petType);
 
-  // --- 以下維持您原本的計算邏輯 ---
+  // --- 以下維持計算邏輯 ---
 
   // 計算實際年齡（以年為單位，含小數）
   const birthDate = new Date(birthday);

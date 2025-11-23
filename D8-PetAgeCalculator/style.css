@@ -1,26 +1,44 @@
+/* 全域設定：讓 padding 不會撐大寬度 */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: "Noto Sans TC", sans-serif;
-  background-image: url("https://plus.unsplash.com/premium_photo-1664304973210-aee8dfc4d0dc?q=80&w=1772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  /* 確保背景圖永遠覆蓋整個視窗高度 */
+  min-height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1727419780738-8b9e85ab9ca6?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  /* 讓背景固定，手機滑動時質感更好 */
+  background-attachment: fixed; 
 }
 
 .overlay {
   position: fixed;
   inset: 0;
   background: rgba(255, 255, 255, 0.3);
+  z-index: 0; /* 確保遮罩在最底層 */
 }
 
 .container {
   position: relative;
+  z-index: 1; /* 確保內容浮在遮罩上 */
+  
+  /* RWD 寬度設定：手機佔 90%，電腦最大 420px */
+  width: 90%;
   max-width: 420px;
-  margin: 80px auto;
+  
+  /* 上下間距改為彈性，避免手機版太擠 */
+  margin: 60px auto 40px; 
   padding: 25px 30px;
+  
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px); /* 支援 Safari */
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
@@ -51,7 +69,8 @@ select {
   border: 1px solid #aaa;
   font-size: 16px;
   background: white;
-  box-sizing: border-box;
+  /* 移除 iOS 預設圓角與陰影 */
+  -webkit-appearance: none; 
 }
 
 button {
@@ -64,6 +83,7 @@ button {
   border-radius: 10px;
   cursor: pointer;
   margin-top: 12px;
+  transition: background 0.3s; /* 增加滑鼠懸停的過渡效果 */
 }
 
 button:hover {
@@ -71,7 +91,7 @@ button:hover {
 }
 
 .result {
-  display: none; /* 初始不顯示 */
+  display: none;
   margin-top: 18px;
   padding: 15px;
   background: rgba(255, 255, 255, 0.95);
@@ -87,7 +107,9 @@ button:hover {
   text-align: center;
   font-size: 14px;
   color: #333;
-  white-space: nowrap; /* ← 不換行 */
+  line-height: 1.5;
+  /* 在大螢幕不換行，手機版會在下方 media query 改掉 */
+  white-space: nowrap; 
 }
 
 .source a {
@@ -97,4 +119,20 @@ button:hover {
 
 .source a:hover {
   text-decoration: underline;
+}
+
+/* ▼▼▼ RWD 手機版專用調整 (螢幕小於 480px 時觸發) ▼▼▼ */
+@media (max-width: 480px) {
+  .container {
+    margin: 30px auto; /* 手機版上方距離縮小 */
+    padding: 20px;     /* 內距稍微縮小，爭取空間 */
+  }
+
+  h1 {
+    font-size: 22px;   /* 標題字體改小 */
+  }
+  
+  .source {
+    white-space: normal; /* 手機版允許換行，避免撐破版面 */
+  }
 }
